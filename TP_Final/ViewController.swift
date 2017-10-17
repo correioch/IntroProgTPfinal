@@ -155,6 +155,10 @@
     //----------------------//----------------------
     @IBAction func play(_ sender: UIButton) {
         //---
+        if bet == 0 {
+            return
+        }
+        
         if chances == 0 || dealButton.alpha == 0.5 {
             return
         } else {
@@ -345,7 +349,7 @@
         tempLabel.text = ""
         //---
         if sender.tag == 1000 {
-            bet = credits
+            bet += credits
             betLabel.text = "MISE : \(bet)"
             credits = 0
             creditsLabel.text = "CRÉDITS : \(credits)"
@@ -370,7 +374,7 @@
     //----------------------//----------------------
     func resetBackOfCards() {
         for back in arrOfSlotImageViews {
-            back.image = UIImage(named: "back.png")
+            back.image = UIImage(named: "bg_1.png")
         }
     }
     //----------------------//----------------------
@@ -386,6 +390,26 @@
         chances = 2
         //---
     }
+    @IBAction func resetGame(_ sender: UIButton) {
+        //---
+        if credits != 0 {
+            return
+        } else {
+            if bet != 0 {
+                  return
+            }else {
+                credits = 2000
+                chances = 2
+                creditsLabel.text = "CRÉDITS : \(credits)"
+                tempLabel.text = "BONNE CHANCE!"
+                dealButton.alpha = 1.0
+                resetBackOfCards()
+                return
+                
+            }
+        }
+    }
+    
     //----------------------//----------------------
   }
   //----------------------//----------------------
