@@ -6,7 +6,6 @@
     /*
      Déclaration de la constante qui gardera les jeux dans la mémoire
      */
-    
     let userDef = UserDefaultManager()
     //---
     /*
@@ -273,6 +272,7 @@
     @IBAction func play(_ sender: UIButton) {
         //---
         if bet == 0 {
+            tempLabel.text = "C'EST NECESSAIRE MISER AVANT DE DISTRIBUER"
             return
         }
         
@@ -436,7 +436,11 @@
         } else if pokerHands.onePair(hand: hand) {
             calculateHand(times: 1, handToDisplay: "PAIRE")
         } else {
-            calculateHand(times: 0, handToDisplay: "RIEN...")
+            if credits == 0 {
+                calculateHand(times: 0, handToDisplay: "RIEN...CLIQUEZ SUR RECOMMENCER POUR REJOUR")
+            }else{
+                calculateHand(times: 0, handToDisplay: "RIEN...")
+            }
         }
     }
     //----------------------//----------------------
